@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose"); 
@@ -9,6 +11,7 @@ const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+
 
 main()
     .then(() => {
@@ -107,6 +110,7 @@ app.post(
 //     console.log("Server is listening to port 8080");
 // });
 
+
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found!"));
 });
@@ -120,4 +124,3 @@ app.use((err, req, res, next) => {
 app.listen(8080, () => {
     console.log("Server running on port 8080");
 });
-
